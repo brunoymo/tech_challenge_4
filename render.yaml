@@ -11,4 +11,8 @@ services:
         value: 1
       - key: TF_ENABLE_ONEDNN_OPTS
         value: 0
+      - key: CUDA_VISIBLE_DEVICES
+        value: -1
+      - key: TF_CPP_MIN_LOG_LEVEL
+        value: 2
     healthCheckPath: /

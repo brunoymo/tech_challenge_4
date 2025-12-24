@@ -9,6 +9,8 @@ WORKDIR /app
 # Evita que o Python gere arquivos .pyc e armazene em buffer
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
+ENV CUDA_VISIBLE_DEVICES=-1
+ENV TF_CPP_MIN_LOG_LEVEL=2
 
 # 4. Instalar Dependências
 # Copiar apenas o requirements.txt primeiro para aproveitar o cache do Docker
