@@ -1,6 +1,6 @@
 # 1. Imagem Base
 # Usar uma imagem slim do Python para manter o tamanho reduzido
-FROM python:3.12-slim
+FROM python:3.11-slim
 
 # 2. Definir o Diretório de Trabalho
 WORKDIR /app
