@@ -1,0 +1,22 @@
+# API Framework
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+pydantic==2.5.0
+
+# Machine Learning & Deep Learning
+tensorflow==2.18.0
+scikit-learn==1.5.0
+
+# Data Processing
+numpy==1.26.4
+pandas==2.2.0
+
+# Data Collection
+yfinance==0.2.66
+
+# Utilities
+python-multipart==0.0.6
+
+# Testing
+pytest==7.4.3
+httpx==0.24.1

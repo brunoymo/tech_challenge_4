@@ -1,0 +1,47 @@
+# Git
+.git
+.gitignore
+*.md
+
+# Docker
+.dockerignore
+Dockerfile
+docker-compose.yml
+
+# Ambientes Virtuais
+.venv
+venv
+env
+
+# Cache e logs do Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.log
+*.so
+*.egg-info/
+dist/
+build/
+
+# Arquivos de IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Arquivos de teste
+tests/
+*.pytest_cache/
+.coverage
+htmlcov/
+
+# Arquivos locais (não devem ir para a imagem)
+train_model.py
+*.csv
+*.xlsx
+
+# Sistema
+.DS_Store
+Thumbs.db
