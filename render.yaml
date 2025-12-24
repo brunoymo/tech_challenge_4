@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: stock-prediction-api
+    env: docker
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    plan: free
+    region: oregon
+    envVars:
+      - key: PYTHONUNBUFFERED
+        value: 1
+      - key: TF_ENABLE_ONEDNN_OPTS
+        value: 0
+    healthCheckPath: /
