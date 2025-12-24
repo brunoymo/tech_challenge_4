@@ -35,21 +35,36 @@ async def load_artifacts():
     Carrega o modelo e o escalonador na memória quando a aplicação inicia.
     """
     global model, scaler
-    print("Carregando artefatos do modelo...")
+    print("=" * 50)
+    print("Iniciando carregamento de artefatos...")
+    print(f"BASE_DIR: {BASE_DIR}")
+    print(f"MODEL_PATH: {MODEL_PATH}")
+    print(f"SCALER_PATH: {SCALER_PATH}")
+    print(f"Modelo existe? {os.path.exists(MODEL_PATH)}")
+    print(f"Scaler existe? {os.path.exists(SCALER_PATH)}")
+    
+    # Listar arquivos no diretório api/models
+    models_dir = os.path.join(BASE_DIR, 'models')
+    if os.path.exists(models_dir):
+        print(f"Arquivos em {models_dir}:")
+        for f in os.listdir(models_dir):
+            print(f"  - {f}")
+    else:
+        print(f"Diretório {models_dir} não existe!")
+    print("=" * 50)
+    
     if not os.path.exists(MODEL_PATH) or not os.path.exists(SCALER_PATH):
         print("Erro: Arquivos de modelo ou escalonador não encontrados.")
         print("Certifique-se de executar o script 'train_model.py' primeiro.")
-        # Em um cenário de produção real, a aplicação não deve iniciar se os artefatos falharem.
-        # Aqui, vamos permitir que inicie para fins de depuração, mas os endpoints falharão.
         return
 
     try:
         model = load_model(MODEL_PATH)
         with open(SCALER_PATH, 'rb') as f:
             scaler = pickle.load(f)
-        print("Artefatos carregados com sucesso.")
+        print("✅ Artefatos carregados com sucesso!")
     except Exception as e:
-        print(f"Erro crítico ao carregar artefatos: {e}")
+        print(f"❌ Erro crítico ao carregar artefatos: {e}")
 
 # Middleware para loggar tempo de resposta (Monitoramento)
 @app.middleware("http")

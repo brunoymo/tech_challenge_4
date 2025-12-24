@@ -217,10 +217,18 @@ netstat -ano | findstr :8000
 taskkill /PID <PID> /F
 ```
 
+## 🌐 API em Produção
+
+**URL Base:** https://stock-prediction-api.onrender.com
+
+**Endpoints:**
+- Documentação: https://stock-prediction-api.onrender.com/docs
+- Previsão Automática: https://stock-prediction-api.onrender.com/predict-auto/AAPL
+
 ## 📝 Licença
 
 Este projeto foi desenvolvido como parte do Tech Challenge - FIAP Pós-Tech Machine Learning Engineering.
 
 ## 👥 Autores
 
-Grupo 35 - FIAP Pós-Tech MLET
+Bruno Obara - FIAP Pós-Tech MLET
