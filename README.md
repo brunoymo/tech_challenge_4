@@ -2,7 +2,13 @@
 
 Este projeto implementa um pipeline completo de MLOps para prever o preço de fechamento de ações usando uma Rede Neural LSTM. O modelo é treinado e implantado como uma API RESTful usando FastAPI e Docker.
 
-## 📁 Estrutura do Projeto
+## Links do Projeto
+
+- **API em Produção**: https://tech-challenge-4.onrender.com
+- **Documentação da API**: https://tech-challenge-4.onrender.com/docs
+- **Repositório Git**: https://github.com/seu-usuario/tech-challenge
+
+## Estrutura do Projeto
 
 ```
 tech_challenge/
@@ -20,7 +26,7 @@ tech_challenge/
 └── train_model.py          # Script de coleta e treinamento
 ```
 
-## 🚀 Instalação
+## Instalação
 
 ### 1. Clone o repositório
 
@@ -45,7 +51,7 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-## 🎯 Treinamento do Modelo
+## Treinamento do Modelo
 
 Antes de executar a API, você deve treinar o modelo.
 
@@ -58,7 +64,7 @@ Este script irá:
 - Treinar o modelo LSTM
 - Salvar `stock_lstm_model.h5` e `scaler.pkl` em `api/models/`
 
-## 🏃 Executando a API
+## Executando a API
 
 ### A. Localmente (desenvolvimento)
 
@@ -109,7 +115,7 @@ docker stop stock-api
 docker rm stock-api
 ```
 
-## 📡 Como Usar a API
+## Como Usar a API
 
 ### Health Check
 
@@ -169,14 +175,14 @@ curl -X 'POST' \
 }
 ```
 
-## 🧪 Testando
+## Testando
 
 Acesse a documentação interativa em:
 - http://127.0.0.1:8000/docs
 
 E teste diretamente pela interface Swagger.
 
-## 📊 Tecnologias Utilizadas
+## Tecnologias Utilizadas
 
 - **Python 3.12**
 - **TensorFlow/Keras** - Modelo LSTM
@@ -186,7 +192,7 @@ E teste diretamente pela interface Swagger.
 - **yfinance** - Coleta de dados
 - **Docker** - Containerização
 
-## ⚙️ Configurações
+## Configurações
 
 ### Variáveis de Ambiente
 
@@ -200,7 +206,7 @@ No `train_model.py`:
 - `TICKER = 'AAPL'` - Ação a ser prevista
 - `EPOCHS = 50` - Épocas de treinamento
 
-## 🐛 Troubleshooting
+## Troubleshooting
 
 ### Erro: "Modelo ou escalonador não estão carregados"
 - Execute `python train_model.py` primeiro
@@ -217,18 +223,58 @@ netstat -ano | findstr :8000
 taskkill /PID <PID> /F
 ```
 
-## 🌐 API em Produção
+## Resultados e Métricas do Modelo
 
-**URL Base:** https://stock-prediction-api.onrender.com
+O modelo LSTM foi treinado com dados históricos da ação AAPL (Apple Inc.) de 2018 a 2024.
 
-**Endpoints:**
-- Documentação: https://stock-prediction-api.onrender.com/docs
-- Previsão Automática: https://stock-prediction-api.onrender.com/predict-auto/AAPL
+### Arquitetura do Modelo
+- **2 camadas LSTM** com 64 unidades cada
+- **Dropout layers** (0.2) para regularização
+- **Camadas Dense** para saída
+- **Optimizer**: Adam
+- **Loss Function**: Mean Squared Error (MSE)
+- **Window Size**: 60 dias
 
-## 📝 Licença
+### Métricas de Avaliação (Conjunto de Teste)
+
+```
+Mean Absolute Error (MAE):           4.75
+Root Mean Squared Error (RMSE):      5.75
+Mean Absolute Percentage Error (MAPE): 2.55%
+```
+
+### Interpretação dos Resultados
+
+- **MAE de 4.75**: O modelo erra em média $4.75 na previsão do preço de fechamento
+- **RMSE de 5.75**: Penaliza erros maiores, indicando que a maioria das previsões está próxima do valor real
+- **MAPE de 2.55%**: Erro percentual médio muito bom, indicando alta precisão relativa
+
+### Performance em Produção
+
+A API está deployada no Render.com com as seguintes características:
+- **Tempo de resposta médio**: < 500ms
+- **Cold start**: 30-60 segundos (plano free)
+- **Disponibilidade**: 99%+ (com sleep após inatividade no plano free)
+
+## API em Produção
+
+**URL Base**: https://tech-challenge-4.onrender.com
+
+**Endpoints Disponíveis**:
+- Health Check: `GET /`
+- Documentação: `GET /docs`
+- Previsão Manual: `POST /predict`
+- Previsão Automática: `GET /predict-auto/{codigo_acao}`
+
+**Exemplo de Uso**:
+```bash
+curl https://tech-challenge-4.onrender.com/predict-auto/AAPL
+```
+
+## Licença
 
 Este projeto foi desenvolvido como parte do Tech Challenge - FIAP Pós-Tech Machine Learning Engineering.
 
-## 👥 Autores
+## Autores
 
-Bruno Obara - FIAP Pós-Tech MLET
+Grupo 35 - FIAP Pós-Tech Machine Learning Engineering - Turma 2024
